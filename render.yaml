@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: visit-penang
+    env: node
+    buildCommand: npm run build  # Use npm to build
+    startCommand: npm start     # Use npm to start the app
