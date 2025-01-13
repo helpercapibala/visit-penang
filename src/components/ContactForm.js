@@ -51,38 +51,39 @@ const ContactForm = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (validate()) {
-            setIsLoading(true);
-            try {
-                const response = await fetch('http://localhost:5000/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                });
+    e.preventDefault();
+    if (validate()) {
+        setIsLoading(true);
+        try {
+            // Updated to Vercel serverless function
+            const response = await fetch('/api/submitForm', { // This is now relative to your Vercel project
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-                // Check if the response status is not OK (e.g., 404, 500)
-                if (!response.ok) {
-                    throw new Error(`Server responded with status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                alert(data.message);
-                setFormData({ name: '', email: '', message: '' });
-                setErrors({});
-            } catch (error) {
-                console.error('Error submitting the form:', error);
-
-                // Check if the error is due to the server not running
-                if (error.message === 'Failed to fetch') {
-                    alert('The backend server is not running. Please start the server and try again.');
-                } else {
-                    alert('An unexpected error occurred. Please try again later.');
-                }
-            } finally {
-                setIsLoading(false);
+            if (!response.ok) {
+                throw new Error(`Server responded with status: ${response.status}`);
             }
+
+            const data = await response.json();
+            alert(data.message);
+            setFormData({ name: '', email: '', message: '' });
+            setErrors({});
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+
+            if (error.message === 'Failed to fetch') {
+                alert('The backend server is not running. Please start the server and try again.');
+            } else {
+                alert('An unexpected error occurred. Please try again later.');
+            }
+        } finally {
+            setIsLoading(false);
         }
+    }
+};
+
     };
 
     return (
