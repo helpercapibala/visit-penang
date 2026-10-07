@@ -17,6 +17,18 @@ A responsive web application designed to explore tourist attractions, local food
 - Node.js installed on your machine
 
 ### Installation & Run
-1. Clone the repository:
+## 1. Clone the repository:
    ```bash
    git clone [https://github.com/helpercapibala/visit-penang.git](https://github.com/helpercapibala/visit-penang.git)
+   ```
+
+## 2. Navigate into the directory and install dependencies: 
+```bash
+cd visit-penang
+npm install
+```
+
+## 3. Start the local development server: 
+```bash
+npm start
+```
