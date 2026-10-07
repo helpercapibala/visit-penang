@@ -9,7 +9,7 @@ A responsive web application designed to explore tourist attractions, local food
 
 ## Tech Stack
 - **Frontend:** React, JavaScript (ES6+), HTML5, CSS3
-- **Tools:** Visual Studio Code, Git, GitHub
+- **Tools:** Visual Studio Code, Node.js, Git, GitHub
 
 ## Getting Started
 
